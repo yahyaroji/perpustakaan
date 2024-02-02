@@ -1,4 +1,12 @@
+<?php  
+session_start();
+if (isset($_POST['logout'])) {
+    session_unset();
+    session_destroy();
+    header('location:../index.php');
+}
 
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +22,10 @@
     <title>Document</title>
 </head>
 <body>
-    <h2>Hallo <?php $username ?> selamat datang di sistem perpustakaan SMKN 11 Malang</h2>
+    <h2>Hallo siswa <?php $_SESSION["username"] ?> selamat datang di sistem perpustakaan SMKN 11 Malang</h2>
+    <form action="index.php" method="POST">
+        <button type="submit" name="logout">logout</button>
+    </form>
     <hr />
     <h3>Detail peminjaman buku</h3>
     

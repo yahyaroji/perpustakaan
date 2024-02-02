@@ -1,4 +1,12 @@
+<?php  
+session_start();
+if (isset($_POST['logout'])) {
+    session_unset();
+    session_destroy();
+    header('location:../index.php');
+}
 
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,9 +22,27 @@
     <title>Document</title>
 </head>
 <body>
-    <h2>Hallo Admin <?php $username ?> sistem informasi perpustakaan</h2>
+    
+
+    <h2>Hallo Admin <?php echo $_SESSION["username"] ?> sistem informasi perpustakaan</h2>
+    <form action="index.php" method="POST">
+        <button type="submit" name="logout">logout</button>
+    </form>
     <hr />
-    <h3>Detail buku yang dipinjam</h3>
+    <nav>
+        <ul>
+            <li><a href="index.php">Home</a></li>
+            <li><a href="data_pengguna.php">Data Pengguna</a></li>
+        </ul>
+    </nav>
+    
+    <hr />
+
+
+    <h3>Daftar Buku</h3>
+    <form action="" method="POST">
+
+    </form>
     
     <input type="text" placeholder="cari">
     <button>Cari</button>
@@ -28,7 +54,7 @@
             <th>Judul Buku</th>
             <th>Pengarang</th>
             <th>Penerbit</th>
-            <th>Action</th>
+            <th>Aksi</th>
         </tr>
         <tr>
             <td></td>
@@ -45,13 +71,16 @@
     </table>
     
     <br />
+    <h3>Detail Peminjam</h3>
     <table>
         <tr>
             <th>No</th>
+            <th>Nama Peminjam</th>
             <th>Judul Buku</th>
             <th>Tanggal Peminjaman</th>
             <th>Tanggal Pengembalian</th>
             <th>Terlambat</th>
+            <th>Aksi</th>
             
         </tr>
         <tr>
@@ -60,6 +89,10 @@
             <td></td>
             <td></td>
             <td></td>
+            <td></td>
+            <td>
+                <button>delete</button>
+            </td>
         </tr>
     </table>
 </body>
