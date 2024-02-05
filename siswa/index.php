@@ -22,7 +22,7 @@ if (isset($_POST['logout'])) {
     <title>Document</title>
 </head>
 <body>
-    <h2>Hallo siswa <?php $_SESSION["username"] ?> selamat datang di sistem perpustakaan SMKN 11 Malang</h2>
+    <h2>Hallo <?php echo $_SESSION["username"] ?> selamat datang di sistem perpustakaan SMKN 11 Malang</h2>
     <form action="index.php" method="POST">
         <button type="submit" name="logout">logout</button>
     </form>

@@ -23,6 +23,8 @@ if(isset($_POST['register'])) {
 
 }
 
+
+
 ?>
 
 
@@ -55,12 +57,21 @@ if(isset($_POST['register'])) {
             <th>Roles</th>
             <th>Tgl Dibuat</th>
         </tr>
+    
+    <?php 
+        $no = 1; 
+        $data = mysqli_query($koneksi, "SELECT * FROM admin ");
+        while ($d = mysqli_fetch_array($data)) {
+    ?>
+    
         <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td><?php echo $no++; ?></td>
+            <td><?php echo $d['username']; ?></td>
+            <td><?php echo $d['roles']; ?></td>
+            <td><?php echo $d['created_at']; ?></td>
         </tr>
+
+        <?php } ?>
     </table>
     <footer>
         <?php include "../layout/footer.html" ?>

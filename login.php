@@ -13,23 +13,16 @@ if (isset($_POST['login'])) {
 
     //cari data
     if ($result->num_rows > 0) {
-        // $ambildatarole = mysqli_fetch_array($result);
-        // $role = $ambildatarole['roles'];
         $data = $result->fetch_assoc();
         if ($role == 'admin') {
             //user admin
-            // $_SESSION ['log'] = 'Logged';
-            
             $_SESSION ['roles'] = 'admin';
             $_SESSION ['username'] = $data ['username'];
             $_SESSION ['is_login'] = true;
-
-            // $_SESSION [is_login] = true;
             header('location:admin');
             
         } else {
             //user siswa
-            // $_SESSION ['log'] = 'Logged';
             $_SESSION ['roles'] = 'siswa';
             $_SESSION ['username'] = $data ['username'];
             $_SESSION ['is_login'] = true;
