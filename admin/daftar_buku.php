@@ -8,8 +8,8 @@ if (isset($_POST['tambah'])) {
     $judul = $_POST['judul'];
     $pengarang = $_POST['pengarang'];
     $penerbit = $_POST['penerbit'];
+    $sql_buku = "INSERT INTO buku (sampul, stok, judul, pengarang, penerbit) VALUES ('$sampul','$stok','$judul','$pengarang','$penerbit')";
 }
-$sql = "INSERT INTO buku (sampul, stok, judul, pengarang, penerbit) VALUES ('$sampul','$stok','$judul','$pengarang','$penerbit')";
 
 // if ($koneksi->query($sql)) {
 //     $message="data berhasil ditambahkan";

@@ -1,0 +1,92 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: rgb(232, 236, 236);
+    font-family: sans-serif;
+}
+nav {
+    background-color: rgb(230, 252, 252);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 15px ;
+}
+
+nav div i {
+    font-size: 30px;
+    color: blue;
+    padding-left: 20px;
+}
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 15px;
+}
+nav ul li a {
+    text-decoration: none;
+    font-family: sans-serif;
+    color: black;
+    font-weight: 600;
+    padding: 5px 0px;
+}
+nav ul li a:hover {
+    border-bottom: 2px solid black;
+}
+.konten {
+    margin: 0;
+    padding: 10px;
+}
+.konten h2 {
+    text-align: center;
+    font-weight: 600;
+    font-size: 15px;
+}
+.konten .cari{
+    padding: 5px;
+    text-align: center;
+}
+.konten .tambahpengguna {
+    padding: 5px;
+    text-align: center;
+    align-items: center;
+}
+.konten .tambahbuku {
+    padding: 5px;
+    text-align: center;
+    align-items: center;
+}
+
+.konten table {
+    font-family: sans-serif;
+    color: #444;
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #f2f5f7;
+}
+.konten table tr th {
+    background: #35a9db;
+    color: #fff;
+    font-weight: normal;
+}
+.konten table th,td {
+    padding: 8px 10px;
+    text-align: center;
+}
+.konten table tr:hover {
+    background-color: #f5f5f5;
+}
+.konten table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 40px;
+    padding: 0;
+    color: #444;
+    text-align: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin-top: 10px;
+  }
