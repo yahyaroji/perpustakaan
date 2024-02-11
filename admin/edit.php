@@ -14,7 +14,7 @@ if(isset($_POST['update']))
     $penerbit = $_POST['penerbit'];
 		
 	// update user data
-	$result = mysqli_query($koneksi, "UPDATE buku SET sampul='$sampul', stok='$stok', judul='$judul', pengarang='$pengarang', penerbit='$penerbit' WHERE id=$id");
+	$result = mysqli_query($koneksi, "UPDATE buku SET sampul='$sampul', stok='$stok', judul='$judul', pengarang='$pengarang', penerbit='$penerbit' WHERE id_buku=$id");
 	
 	// Redirect to homepage to display updated user in list
 	header("Location: index.php");
@@ -23,10 +23,10 @@ if(isset($_POST['update']))
 <?php
 // Display selected user data based on id
 // Getting id from url
-$id = $_GET['id'];
+$id = $_GET['id_buku'];
  
 // Fetech user data based on id
-$result = mysqli_query($koneksi, "SELECT * FROM buku WHERE id=$id");
+$result = mysqli_query($koneksi, "SELECT * FROM buku WHERE id_buku=$id");
  
 while($d = mysqli_fetch_array($result))
 {
@@ -62,6 +62,7 @@ while($d = mysqli_fetch_array($result))
             <td><input type="text" name="penerbit" value = "<?php echo $penerbit ?>"></td>
             
             <td>
+                <input type="hidden" name="id" value="<?php echo $_GET['id_buku'] ?>">
                 <button type="submit" name="update"> update</button>
             </td>
         </tr>

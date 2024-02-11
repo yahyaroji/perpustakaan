@@ -23,7 +23,9 @@ if(isset($_POST['register'])) {
 
 }
 
-
+if(isset($_GET['cari'])) {
+    $cari = $_GET['cari'];
+}
 
 
 
@@ -54,8 +56,10 @@ if(isset($_POST['register'])) {
     <div class="konten">
         <h2>Hallo <?php $username ?> selamat datang di sistem perpustakaan SMKN 11 Malang</h2>
         <div class="cari">
-            <input type="text" placeholder="ketik nama pengguna">
-            <button>Cari</button>
+            <form action="data_pengguna.php" method="GET">
+                <input type="text" placeholder="ketik nama" name="cari">
+                <button type="submit" value="Cari">Cari</button>
+            </form>
         </div>
         <i><?= $message ?></i>
         <div class="tambahpengguna">
@@ -78,10 +82,14 @@ if(isset($_POST['register'])) {
                 <th>Tgl Dibuat</th>
                 <th>Action</th>
             </tr>
-        
         <?php 
+            if(isset($_GET['cari'])){
+                $cari = $_GET['cari'];
+                $data = mysqli_query($koneksi, "SELECT * FROM admin where username like '%".$cari."%'");
+            } else {
+                $data = mysqli_query($koneksi, "SELECT * FROM admin ");
+            }
             $no = 1; 
-            $data = mysqli_query($koneksi, "SELECT * FROM admin ");
             while ($d = mysqli_fetch_array($data)) {
         ?>
         
@@ -91,8 +99,7 @@ if(isset($_POST['register'])) {
                 <td><?php echo $d['roles']; ?></td>
                 <td><?php echo $d['created_at']; ?></td>
                 <td>
-                    <button>edit</button>
-                    <button>delete</button>
+                    <button><a href="delete.php?id_user=<?php echo $d['id_user']; ?>"> delete</a></button>
                 </td>
             </tr>
     

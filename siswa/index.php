@@ -1,4 +1,5 @@
 <?php  
+include "../koneksi.php";
 session_start();
 
 // if ($_SESSION['roles']=="") {
@@ -11,6 +12,9 @@ if (isset($_POST['logout'])) {
     header('location:../index.php');
 }
 
+if(isset($_GET['cari'])) {
+    $cari = $_GET['cari'];
+}
 ?>
 
 <!DOCTYPE html>
@@ -39,33 +43,46 @@ if (isset($_POST['logout'])) {
         <h2>Hallo <?php echo $_SESSION["username"] ?> selamat datang di sistem perpustakaan SMKN 11 Malang</h2>
         
         <div class="cari">
-            <input type="text" placeholder="ketik judul buku">
-            <button>Cari</button>
+            <form action="index.php" method="GET">
+                <input type="text" placeholder="ketik judul buku" name="cari">
+                <button type="submit" value="Cari">Cari</button>
+            </form>
         </div>
         
         <table>
         <tr>
             <th>No</th>
+            <th>Sampul</th>
             <th>Stok</th>
             <th>Judul Buku</th>
-            <th>Kategori</th>
             <th>Pengarang</th>
             <th>Penerbit</th>
             <th>Action</th>
         </tr>
+        <?php 
+            if(isset($_GET['cari'])){
+                $cari = $_GET['cari'];
+                $data = mysqli_query($koneksi, "SELECT * FROM buku where judul like '%".$cari."%'");
+            } else {
+                $data = mysqli_query($koneksi, "SELECT * FROM buku ");
+            }
+            $no = 1; 
+            while ($d = mysqli_fetch_array($data)) {
+        ?>
         <tr>
-            <td>1</td>
-            <td>5</td>
-            <td>mikrotik pemula</td>
-            <td>Teknologi</td>
-            <td>Dr. Indro, S.T, M.T</td>
-            <td>Airlangga Sby</td>
+            <td><?php echo $no++ ?></td>
+            <td><?php echo $d['sampul'] ?></td>
+            <td><?php echo $d['stok'] ?></td>
+            <td><?php echo $d['judul'] ?></td>
+            <td><?php echo $d['pengarang'] ?></td>
+            <td><?php echo $d['penerbit'] ?></td>
+            
             <td>
-                <button>pinjam</button>
-                
+                <button> <a href="">pinjam</a></button>
             </td>
         </tr>
-    </table>
+        <?php } ?>
+        </table>
 
     </div>
     <?php

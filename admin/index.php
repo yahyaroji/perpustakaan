@@ -17,6 +17,9 @@ if (isset($_POST['tambah'])) {
     $sql_buku = "INSERT INTO buku (sampul, stok, judul, pengarang, penerbit) VALUES ('$sampul','$stok','$judul','$pengarang','$penerbit')";
     $koneksi->query($sql_buku);
 }
+if(isset($_GET['cari'])) {
+    $cari = $_GET['cari'];
+}
 
 ?>
 
@@ -53,8 +56,10 @@ if (isset($_POST['tambah'])) {
     <h2>Hallo <?php echo $_SESSION["username"] ?> selamat datang di sistem perpustakaan SMKN 11 Malang</h2>
             
             <div class="cari">
-                <input type="text" placeholder="ketik judul buku">
-                <button>Cari</button>
+                <form action="index.php" method="GET">
+                    <input type="text" placeholder="ketik judul buku" name="cari">
+                    <button type="submit" value="Cari">Cari</button>
+                </form>
             </div>
             <div class="tambahbuku">
                 <form action="index.php" method="POST">
@@ -77,8 +82,13 @@ if (isset($_POST['tambah'])) {
             <th>Action</th>
         </tr>
         <?php 
+            if(isset($_GET['cari'])){
+                $cari = $_GET['cari'];
+                $data = mysqli_query($koneksi, "SELECT * FROM buku where judul like '%".$cari."%'");
+            } else {
+                $data = mysqli_query($koneksi, "SELECT * FROM buku ");
+            }
             $no = 1; 
-            $data = mysqli_query($koneksi, "SELECT * FROM buku ");
             while ($d = mysqli_fetch_array($data)) {
         ?>
         <tr>
@@ -90,8 +100,8 @@ if (isset($_POST['tambah'])) {
             <td><?php echo $d['penerbit'] ?></td>
             
             <td>
-                <button> <a href="edit.php?id=<?php echo $d['id']; ?>"> edit</a></button>
-                <button> <a href="delete.php?id=<?php echo $d['id']; ?>"> delete</a></button>
+                <button> <a href="edit.php?id_buku=<?php echo $d['id_buku']; ?>"> edit</a></button>
+                <button> <a href="delete.php?id_buku=<?php echo $d['id_buku']; ?>"> delete</a></button>
             </td>
         </tr>
         <?php } ?>
