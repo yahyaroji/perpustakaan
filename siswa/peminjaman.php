@@ -1,5 +1,16 @@
 <?php 
+include "../koneksi.php";
+session_start();
 
+// if ($_SESSION['roles']=="") {
+//     header("location:../index.php");
+// }
+
+if (isset($_POST['logout'])) {
+    session_unset();
+    session_destroy();
+    header('location:../index.php');
+}
 
 ?>
 
@@ -20,7 +31,7 @@
         <ul>
             <li><a href="index.php">Home</a></li>
             <li><a href="peminjaman.php">Peminjaman</a></li>
-            <li><button type="submit" class="btn-login">logout</button></li>        
+            <li><button type="submit" class="btn-login" name="logout">logout</button></li>        
         </ul>
     </nav>
     <div class="konten">

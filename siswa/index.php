@@ -78,7 +78,7 @@ if(isset($_GET['cari'])) {
             <td><?php echo $d['penerbit'] ?></td>
             
             <td>
-                <button> <a href="">pinjam</a></button>
+                <button> <a href="pinjam.php?id_buku=<?php echo $d['id_buku']; ?>">pinjam</a></button>
             </td>
         </tr>
         <?php } ?>
